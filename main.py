@@ -1,9 +1,10 @@
+import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
 app = FastAPI()
-model = SentenceTransformer('google/embeddinggemma-300m')
+model = SentenceTransformer('google/embeddinggemma-300m', use_auth_token=os.getenv('HF_TOKEN'))
 
 class TextRequest(BaseModel):
     text: str
